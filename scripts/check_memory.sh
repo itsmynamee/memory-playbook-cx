@@ -1,5 +1,5 @@
 #!/bin/bash
-# Integrity check for a domain-memory directory.
+# Integrity check for a memory-playbook directory.
 # Usage: check_memory.sh <memory-dir>
 # FAILS (exit 1) on: missing MEMORY.md, orphaned files, fake domain-* files.
 # WARNS (exit 0) on: size ceilings exceeded - those are maintenance nudges, not breakage.

@@ -1,9 +1,9 @@
 ---
-name: domain-memory
+name: memory-playbook
 description: Two-tier self-learning persistent memory for Claude Code projects. Use this whenever the user wants to set up, reorganize, audit, or improve Claude's file-based memory; whenever MEMORY.md is bloated, near its size limit, or keeps getting compacted; whenever the user asks Claude to "remember things properly", "learn from mistakes", "stop repeating the same corrections", or wants project knowledge to survive across sessions. Also use it when SAVING memories in a project that already follows this system (look for a domain map in MEMORY.md).
 ---
 
-# Domain Memory
+# Memory Playbook
 
 A protocol for Claude Code's file-based memory that solves two chronic problems:
 
