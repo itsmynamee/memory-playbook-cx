@@ -179,3 +179,18 @@ no IN PROGRESS marker in the domain — say WAITING ON OWNER there, put the owne
 MEMORY.md's owner-owes block, and keep a short closing checklist here (what to update where
 once the owner acts).>
 ```
+
+## CLAUDE.md memory pointer (idempotent — add once during Bootstrap/Migration, skip if present)
+
+Skill-matching on the description is best-effort: a future session only reroutes into the
+Maintenance protocol if it happens to notice the domain map before saving. Planting this line
+in the project's `CLAUDE.md` makes that check deterministic instead. Grep `CLAUDE.md` for
+"domain map" first — if an equivalent line already exists (this step already ran, or the
+owner wrote one), skip it.
+
+```markdown
+## Memory
+Before saving any memory, check this project's MEMORY.md for a domain map. If one exists,
+follow the domain-memory skill's Maintenance protocol (episode file → pointer in its domain
+→ refresh that domain's status) instead of writing directly into MEMORY.md.
+```

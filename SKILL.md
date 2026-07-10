@@ -44,7 +44,8 @@ Why this shape works: MEMORY.md stays a few KB forever; a session working on pay
 2. Write `project-map.md`: derive stable facts from the repo (what the product is, repos/services, architecture invariants that must not be violated, how work is verified before "done", key code entry points). Interview the owner only for what the code can't tell you (business context, external services); when interviewing isn't possible, write the best guess and mark it `(ASSUMED)` — a future session must be able to tell confirmed facts from guesses, and should upgrade ASSUMED entries as the owner confirms them. Status never goes here. Two edge cases: a convention not yet applied everywhere → the rule itself lives here, the unfinished tail is status in the owning domain; a stable fact mid-transition (something being decommissioned/replaced) → record the current truth here with an inline note to update/remove the line when the transition ends.
 3. Write `playbook.md` from the template. Seed the philosophy/red-flags sections with anything already known about the owner's preferences; leave the lessons journal empty — it fills itself via the self-learning protocol.
 4. Create 2-5 initial `domain-<area>.md` files matching the project's natural work areas (e.g. payments, admin-ui, public-site, infra). Don't over-split: a domain earns existence when it has status worth tracking; new domains can be added any time by adding one line to the map.
-5. Run `<skill-dir>/scripts/check_memory.sh <memory-dir>` to verify integrity.
+5. Ensure the project's `CLAUDE.md` (create a minimal one if none exists) contains the memory pointer from `references/templates.md` — skip if an equivalent line is already present. This makes the next session check MEMORY.md for a domain map before saving instead of relying on semantic skill-matching alone.
+6. Run `<skill-dir>/scripts/check_memory.sh <memory-dir>` to verify integrity.
 
 ## Migration (existing bloated memory)
 
@@ -53,7 +54,8 @@ Why this shape works: MEMORY.md stays a few KB forever; a session working on pay
 3. For each domain: create `domain-<area>.md` with a dated "Current status" section (the in-flight facts), a shipped/history list, and a "Gotchas" section (area-specific traps). Legacy files being adopted that lack frontmatter get it added (see `references/templates.md` for the required fields).
 4. Rebuild MEMORY.md from the template: rules + domain map + only truly cross-domain one-liners (global gotchas, "what the owner owes" block). Everything else moves into domains. Preserve any protected/LOCKED rules verbatim — never soften them during migration.
 5. Bootstrap `project-map.md` and `playbook.md` if absent (steps 2-3 above).
-6. Run `<skill-dir>/scripts/check_memory.sh <memory-dir>` — zero orphans required. Watch for name collisions: only real domain indexes may match `domain-*.md` (a legacy file that accidentally matches gets renamed).
+6. Ensure the project's `CLAUDE.md` (create a minimal one if none exists) contains the memory pointer from `references/templates.md` — skip if already present. Migrated projects need this even more: earlier sessions here were relying on semantic skill-matching alone.
+7. Run `<skill-dir>/scripts/check_memory.sh <memory-dir>` — zero orphans required. Watch for name collisions: only real domain indexes may match `domain-*.md` (a legacy file that accidentally matches gets renamed).
 
 ## Maintenance protocol (the rules that live in MEMORY.md)
 
