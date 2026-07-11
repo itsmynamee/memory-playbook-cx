@@ -76,6 +76,13 @@ Then just keep working. On a fresh project it bootstraps memory from what it can
 your repo; on a project with an already-bloated `MEMORY.md` it migrates instead of starting
 over. Ask for it explicitly any time: *"set up memory for this project."*
 
+**Updating:** it's a plain git clone, not a managed install — there's no auto-update. Pull
+the latest whenever you want it:
+
+```bash
+git -C ~/.claude/skills/memory-playbook pull
+```
+
 ## Why not just use Auto Memory / Auto Dream / claude-mem?
 
 - **Claude Code's native Auto Memory / Auto Dream** are heading the same direction (index +
