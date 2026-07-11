@@ -39,6 +39,10 @@ pointers to episode files. Usage rules:
    save space.
 8. LOCKED rules below are untouchable without explicit owner permission (including during
    memory consolidation).
+9. **Contradiction check:** after any save touching a Gotcha, playbook red flag, project-map
+   invariant, or LOCKED rule — compare it against the other rule-bearing entries it could
+   collide with. Conflict found? Tell the owner right away: compact, plain language, what
+   conflicts and why, plus your recommended fix. Owner decides; never silently overwrite.
 
 ## 🔒 LOCKED — never edit, weaken, or delete without asking the owner first
 
@@ -152,6 +156,8 @@ permission.
 4. **Honest states:** what does the user see on failure/empty/slow for this exact flow?
 5. **Memory:** domain status updated; episode written; this turn's lessons recorded.
 6. **Committed** (follow the project's push convention).
+7. **No new contradictions:** any rule-bearing memory edit this turn checked against the
+   rules it touches; owner already notified of any conflict found, with a recommended fix.
 
 ## Lessons (append-only journal; promote into sections above when a pattern emerges)
 

@@ -50,7 +50,7 @@ Why this shape works: MEMORY.md stays a few KB forever; a session working on pay
 ## Migration (existing bloated memory)
 
 1. Read the whole existing MEMORY.md and list every memory file on disk — files missing from the index (orphans) are common and must be adopted, not dropped.
-2. Cluster entries into 5-10 domains by work area. An entry that fits two domains gets a pointer in both, marked "cross-linked".
+2. Cluster entries into 5-10 domains by work area. An entry that fits two domains gets a pointer in both, marked "cross-linked". While clustering, watch for entries that contradict each other (common in memory that grew unmanaged) — flag those to the owner using the same format as the ongoing Contradiction check (Maintenance rule 9) before finalizing domains.
 3. For each domain: create `domain-<area>.md` with a dated "Current status" section (the in-flight facts), a shipped/history list, and a "Gotchas" section (area-specific traps). Legacy files being adopted that lack frontmatter get it added (see `references/templates.md` for the required fields).
 4. Rebuild MEMORY.md from the template: rules + domain map + only truly cross-domain one-liners (global gotchas, "what the owner owes" block). Everything else moves into domains. Preserve any protected/LOCKED rules verbatim — never soften them during migration.
 5. Bootstrap `project-map.md` and `playbook.md` if absent (steps 2-3 above).
@@ -69,12 +69,13 @@ These are the day-to-day rules. The MEMORY.md template embeds them so every futu
 6. **MEMORY.md changes only when:** a domain is added to the map, a global rule/gotcha changes, or the owner-owes block changes. A domain growing past ~10KB → move its shipped-history into `domain-<area>-archive.md` AND link the archive from the domain file (an unlinked archive is an orphan); status + gotchas stay in the domain. Archives are exempt from the size ceiling — they exist to absorb overflow.
 7. **Episodes are never deleted to save space** — only the index layers are size-managed.
 8. Protected/LOCKED rules are untouchable without an explicit owner decision, including during any consolidation pass.
+9. **Contradiction check:** whenever a save adds or edits a rule-bearing entry (a domain Gotcha, a playbook red flag/philosophy line, a project-map invariant, or a LOCKED rule), re-read the other rule-bearing entries it could collide with — project-map, playbook, the touched domain, any cross-linked domain, MEMORY.md's global gotchas/LOCKED block — before ending the turn. Two entries saying incompatible things? Don't silently pick one: tell the owner immediately, compactly, in plain language — what the two rules are, why they conflict, your recommended resolution. The owner decides; only edit memory once they do.
 
 ## The self-learning loop (what makes it more than a filing system)
 
 - **Capture:** the trigger is any correction or self-caught miss — not just bugs. "You used the wrong tone", "this screen is inconsistent with that one", "you gave me a menu instead of a decision" are all lessons.
 - **Store with taxonomy:** philosophy and collaboration style → playbook sections; recurring visual/UX classes → the design domain's checklist; code traps → domain gotchas; bug classes → a class file + immediate system-wide sweep.
-- **Replay:** the playbook contains a mandatory pre-ship self-review (verification commands, "class not instance" sweep, uniformity check, honest failure-states check, memory updated). Run it before every "done" — the point is that the owner never has to ask "did you check everywhere?" again.
+- **Replay:** the playbook contains a mandatory pre-ship self-review (verification commands, "class not instance" sweep, uniformity check, honest failure-states check, memory updated, contradiction check). Run it before every "done" — the point is that the owner never has to ask "did you check everywhere?" again.
 - **Distill:** the lessons journal is append-only in the moment; when a pattern repeats, promote it into the structured sections (or into a red-flag list) and keep the journal entry as provenance.
 
 ## Integrity checks
