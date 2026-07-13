@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640">
+  <rect width="1280" height="640" fill="#0b0f17"/>
+  <g stroke="#1f2937" stroke-width="1" opacity="0.7">
+    <path d="M0 80H1280M0 160H1280M0 240H1280M0 320H1280M0 400H1280M0 480H1280M0 560H1280"/>
+    <path d="M80 0V640M160 0V640M240 0V640M320 0V640M400 0V640M480 0V640M560 0V640M640 0V640M720 0V640M800 0V640M880 0V640M960 0V640M1040 0V640M1120 0V640M1200 0V640"/>
+  </g>
+  <text x="84" y="118" fill="#60a5fa" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="28" letter-spacing="3">CODEX · SKILL</text>
+  <text x="80" y="220" fill="#f8fafc" font-family="Arial, Helvetica, sans-serif" font-size="70" font-weight="700">Memory</text>
+  <text x="80" y="298" fill="#f8fafc" font-family="Arial, Helvetica, sans-serif" font-size="70" font-weight="700">Playbook CX</text>
+  <text x="84" y="374" fill="#9ca3af" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="25">Small context. Durable decisions.</text>
+  <text x="84" y="412" fill="#9ca3af" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="25">Rules that check their own consistency.</text>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22" text-anchor="middle">
+    <rect x="758" y="104" width="410" height="72" rx="12" fill="#111827" stroke="#60a5fa" stroke-width="2"/>
+    <text x="963" y="148" fill="#93c5fd">MEMORY.md · index</text>
+    <rect x="961" y="176" width="4" height="56" fill="#60a5fa"/>
+    <rect x="838" y="228" width="244" height="4" fill="#60a5fa"/>
+    <rect x="838" y="230" width="4" height="40" fill="#60a5fa"/>
+    <rect x="1078" y="230" width="4" height="40" fill="#60a5fa"/>
+    <rect x="730" y="270" width="220" height="66" rx="10" fill="#111827" stroke="#34d399" stroke-width="2"/>
+    <rect x="970" y="270" width="220" height="66" rx="10" fill="#111827" stroke="#34d399" stroke-width="2"/>
+    <text x="840" y="312" fill="#6ee7b7">domain-a</text>
+    <text x="1080" y="312" fill="#6ee7b7">domain-b</text>
+    <rect x="1078" y="336" width="4" height="66" fill="#34d399"/>
+    <rect x="970" y="402" width="220" height="66" rx="10" fill="#111827" stroke="#9ca3af" stroke-width="2"/>
+    <text x="1080" y="444" fill="#d1d5db">episode</text>
+  </g>
+  <text x="84" y="560" fill="#6b7280" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="20">github.com/itsmynamee/</text>
+  <text x="360" y="560" fill="#34d399" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="20">memory-playbook-cx</text>
+</svg>
