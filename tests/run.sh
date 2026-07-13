@@ -7,6 +7,14 @@ cd "$ROOT"
 bash -n scripts/check_memory.sh
 grep -q '^name: memory-playbook-cx$' SKILL.md
 grep -q 'default_prompt:.*\$memory-playbook-cx' agents/openai.yaml
+grep -q 'references/capture-policy.md' SKILL.md
+grep -q 'closing a substantive project task' SKILL.md
+grep -q 'For every substantive completed or interrupted task' AGENTS.md
+grep -q '~/.agents/skills/memory-playbook-cx' README.md
+if grep -q '~/.codex/skills/memory-playbook-cx' README.md; then
+  echo "README still documents the obsolete user skill path"
+  exit 1
+fi
 
 tmp=$(mktemp -d)
 trap 'rm -rf "$tmp"' EXIT

@@ -15,22 +15,23 @@ Two-tier: **MEMORY.md = rules + domain map only** (never holds working status, s
 hits the size limit). **Domain files (`domain-*.md`) = live status of their area** + one-line
 pointers to episode files. Usage rules:
 
-1. **Fresh session: read [project-map](project-map.md) (what this system is) +
+1. **Fresh substantive task: read [project-map](project-map.md) (what this system is) +
    [playbook](playbook.md) (how we work, what triggers corrections) first.** Then, before
    working on area X, read `domain-X.md`. Don't work on an area "from model memory" without
    this step.
-2. **Saving new memory:** write an episode file → add a one-line pointer in ITS domain file
-   (NOT in MEMORY.md!) → refresh that domain's "Current status". This is a deliberate,
-   owner-approved deviation from the default "pointer in MEMORY.md" instruction — do NOT
-   "fix" it back.
-3. **Finishing work on an area** (even without a new episode — deployed, tested, closed):
-   update its domain's Current status + date before ending the turn.
+2. **Automatic closeout:** before the final response of a substantive completed or interrupted
+   task, run the memory-playbook-cx capture gate. Save only verified, reusable project context;
+   never log the transcript, routine commands, secrets, or facts already obvious from Git.
+   `Do not remember` / `temporary` opts the task out.
+3. **Saving eligible detail:** prefer an existing entry. Create an episode only when future work
+   needs reasoning Git does not provide → add a one-line pointer in ITS domain file (NOT in
+   MEMORY.md!) → refresh that domain's Current status. Routine completion usually needs only
+   the status refresh.
 4. **Interrupted work = a mandatory resume checklist in the episode** + IN PROGRESS marker
    in the domain.
-5. **Self-learning:** when the owner explicitly asks to preserve a correction or lesson,
+5. **Self-learning:** when a stable owner correction or reusable lesson passes the capture gate,
    record philosophy/process in playbook and area-specific traps in domain Gotchas. For bug
    classes, root-cause first, then sweep the codebase for siblings before recording the class.
-   Never treat an ordinary correction as implicit authorization to write memory.
 6. **MEMORY.md changes only when:** a new domain appears, a global rule changes, or the
    owner-owes block changes. Domain past ~10KB → move shipped-history to
    `domain-<area>-archive.md` AND link the archive from the domain file.
@@ -48,6 +49,9 @@ pointers to episode files. Usage rules:
    <date>: <why>)` so it's never re-flagged; if the owner defers, park it in the owner-owes
    block prefixed `CONFLICT:` (or `STALE?:`) so it survives the session.
    For a full-store sweep of all rules at once, ask the memory-playbook-cx skill for an Audit.
+10. **Layer boundary:** must-follow behavior lives in AGENTS.md or checked-in documentation.
+    Codex-managed global memories are generated state; never edit them directly or copy them
+    into this repository without explicit owner approval.
 
 ## 🔒 LOCKED — never edit, weaken, or delete without asking the owner first
 
@@ -135,10 +139,11 @@ metadata:
   type: feedback
 ---
 
-Living distillation of owner-approved durable corrections. **Goal: the owner never has to ask "check it",
+Living distillation of durable owner corrections. **Goal: the owner never has to ask "check it",
 "make it consistent", "fix it everywhere" - that is a standard part of every task.** Upkeep
-rule: when the owner asks to preserve a correction, add the lesson here (philosophy/process)
-or to the domain's Gotchas (code specifics). Delete/soften only with owner permission.
+rule: when a stable correction passes the automatic closeout gate, add the lesson here
+(philosophy/process) or to the domain's Gotchas (code specifics). Delete/soften only with
+owner permission.
 
 ## Product philosophy
 
@@ -161,7 +166,8 @@ or to the domain's Gotchas (code specifics). Delete/soften only with owner permi
 3. **Uniformity:** new UI checked against the design checklist; states complete; measured,
    not eyeballed.
 4. **Honest states:** what does the user see on failure/empty/slow for this exact flow?
-5. **Memory:** domain status updated; episode written; this turn's lessons recorded.
+5. **Memory:** automatic closeout gate run; smallest eligible delta recorded, or no write when
+   the task produced no durable project knowledge.
 6. **Committed** (follow the project's push convention).
 7. **No new contradictions / stale rules:** any rule-bearing memory edit this turn checked
    against the rules it touches; owner already notified of any conflict or stale entry found,
@@ -194,7 +200,7 @@ MEMORY.md's owner-owes block, and keep a short closing checklist here (what to u
 once the owner acts).>
 ```
 
-## AGENTS.md memory pointer (idempotent — add once during Bootstrap/Migration, skip if present)
+## AGENTS.md automatic closeout rule (idempotent — add once during Bootstrap/Migration)
 
 Skill matching is best-effort. Put this instruction in the nearest applicable project
 `AGENTS.md` so future Codex tasks see it deterministically. Preserve existing instructions;
@@ -203,7 +209,12 @@ when the project uses another project-local memory directory.
 
 ```markdown
 ## Memory
-Before saving project memory, check `.codex/memory/MEMORY.md` for a domain map. If one exists,
-follow the memory-playbook-cx skill's Maintenance protocol: episode file → pointer in its domain
-→ refresh that domain's status. Never write project status directly into `MEMORY.md`.
+For every substantive completed or interrupted task, before the final response, check
+`.codex/memory/MEMORY.md`. If it contains a memory-playbook domain map, run the
+`memory-playbook-cx` Closeout protocol and its capture gate. Record only verified, reusable
+project context; prefer updating an existing entry, create an episode only when future work
+needs reasoning Git does not provide, link it from its domain, refresh that domain's status,
+and run the memory checker. Never put live status directly in `MEMORY.md`. An explicit
+`do not remember` or `temporary` instruction opts the current task out. Never copy
+Codex-managed global memories into the repository without explicit owner approval.
 ```
