@@ -1,0 +1,4 @@
+interface:
+  display_name: "Memory Playbook CX"
+  short_description: "Maintain transparent project memory for Codex"
+  default_prompt: "Use $memory-playbook-cx to set up or audit this project's durable memory."

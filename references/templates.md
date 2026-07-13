@@ -1,15 +1,15 @@
 # Templates
 
-Copy these skeletons when bootstrapping or migrating. Replace `<...>` placeholders. Write the actual content in the language the owner uses with you — EXCEPT the `Domain index` token at the start of every domain file's `description:`, which is machine-checked by `check_memory.sh` and must stay verbatim English.
+Copy these skeletons when bootstrapping or migrating project-local memory. Replace `<...>` placeholders. Write the actual content in the language the owner uses with you — EXCEPT the `Domain index` token at the start of every domain file's `description:`, which is machine-checked by `check_memory.sh` and must stay verbatim English.
 
-Frontmatter: every memory file carries `name`, `description`, `metadata.type` — EXCEPT MEMORY.md itself, which is the harness index and carries no frontmatter. `metadata.type` vocabulary (harness convention): `user` (who the owner is), `feedback` (how to work with them — the playbook), `project` (work/state/architecture — domains, episodes, project-map), `reference` (pointers to external resources).
+Frontmatter: every memory file carries `name`, `description`, and `metadata.type` — EXCEPT MEMORY.md itself, which is the index and carries no frontmatter. Use `feedback` for the playbook, `project` for domains/episodes/project-map, and `reference` only for external-resource indexes.
 
 ## MEMORY.md skeleton
 
 ```markdown
 # Memory index
 
-## How this memory works (memory-playbook system)
+## How this memory works (memory-playbook-cx system)
 
 Two-tier: **MEMORY.md = rules + domain map only** (never holds working status, so it never
 hits the size limit). **Domain files (`domain-*.md`) = live status of their area** + one-line
@@ -27,10 +27,10 @@ pointers to episode files. Usage rules:
    update its domain's Current status + date before ending the turn.
 4. **Interrupted work = a mandatory resume checklist in the episode** + IN PROGRESS marker
    in the domain.
-5. **Self-learning:** every owner correction OR self-caught mistake = a lesson recorded in
-   the SAME turn: philosophy/process → playbook; area-specific code trap → domain Gotchas;
-   bug class → root-cause first (see `systematic-debugging`), then system-wide sweep + class
-   file. Before every "done" — run the playbook's pre-ship self-review.
+5. **Self-learning:** when the owner explicitly asks to preserve a correction or lesson,
+   record philosophy/process in playbook and area-specific traps in domain Gotchas. For bug
+   classes, root-cause first, then sweep the codebase for siblings before recording the class.
+   Never treat an ordinary correction as implicit authorization to write memory.
 6. **MEMORY.md changes only when:** a new domain appears, a global rule changes, or the
    owner-owes block changes. Domain past ~10KB → move shipped-history to
    `domain-<area>-archive.md` AND link the archive from the domain file.
@@ -47,7 +47,7 @@ pointers to episode files. Usage rules:
    When a new rule is *meant* to replace an old one, mark the old `(SUPERSEDED by [[<new>]] —
    <date>: <why>)` so it's never re-flagged; if the owner defers, park it in the owner-owes
    block prefixed `CONFLICT:` (or `STALE?:`) so it survives the session.
-   For a full-store sweep of all rules at once, ask the memory-playbook skill for an Audit.
+   For a full-store sweep of all rules at once, ask the memory-playbook-cx skill for an Audit.
 
 ## 🔒 LOCKED — never edit, weaken, or delete without asking the owner first
 
@@ -130,16 +130,15 @@ how visuals are verified; anything banned>.
 ```markdown
 ---
 name: playbook
-description: "Self-learning playbook - owner's philosophy, how to present work, red flags that trigger corrections, and the mandatory pre-ship self-review. APPEND lessons freely; NEVER delete/soften an entry without asking the owner."
+description: "Self-learning playbook - owner's philosophy, how to present work, red flags that trigger corrections, and the mandatory pre-ship self-review. Add authorized lessons; NEVER delete/soften an entry without asking the owner."
 metadata:
   type: feedback
 ---
 
-Living distillation of every owner correction. **Goal: the owner never has to ask "check it",
+Living distillation of owner-approved durable corrections. **Goal: the owner never has to ask "check it",
 "make it consistent", "fix it everywhere" - that is a standard part of every task.** Upkeep
-rule: a new correction (theirs or self-caught) → add the lesson here (philosophy/process) or
-to the domain's Gotchas (code specifics), in the SAME turn. Delete/soften only with owner
-permission.
+rule: when the owner asks to preserve a correction, add the lesson here (philosophy/process)
+or to the domain's Gotchas (code specifics). Delete/soften only with owner permission.
 
 ## Product philosophy
 
@@ -157,9 +156,8 @@ permission.
 ## Mandatory pre-ship self-review (before every "done")
 
 1. **Verification:** <the project's full command triad — no exceptions, even for one-liners>.
-2. **Class, not instance:** root-cause it first (that investigation belongs to the
-   `systematic-debugging` skill) — fix only once the cause is certain, then sweep: does
-   this same problem/pattern exist elsewhere? Fix every instance before closing.
+2. **Class, not instance:** root-cause it first — fix only once the cause is certain, then
+   sweep: does this same problem/pattern exist elsewhere? Fix every instance before closing.
 3. **Uniformity:** new UI checked against the design checklist; states complete; measured,
    not eyeballed.
 4. **Honest states:** what does the user see on failure/empty/slow for this exact flow?
@@ -196,17 +194,16 @@ MEMORY.md's owner-owes block, and keep a short closing checklist here (what to u
 once the owner acts).>
 ```
 
-## CLAUDE.md memory pointer (idempotent — add once during Bootstrap/Migration, skip if present)
+## AGENTS.md memory pointer (idempotent — add once during Bootstrap/Migration, skip if present)
 
-Skill-matching on the description is best-effort: a future session only reroutes into the
-Maintenance protocol if it happens to notice the domain map before saving. Planting this line
-in the project's `CLAUDE.md` makes that check deterministic instead. Grep `CLAUDE.md` for
-"domain map" first — if an equivalent line already exists (this step already ran, or the
-owner wrote one), skip it.
+Skill matching is best-effort. Put this instruction in the nearest applicable project
+`AGENTS.md` so future Codex tasks see it deterministically. Preserve existing instructions;
+skip the addition if an equivalent domain-map rule already exists. Replace the default path
+when the project uses another project-local memory directory.
 
 ```markdown
 ## Memory
-Before saving any memory, check this project's MEMORY.md for a domain map. If one exists,
-follow the memory-playbook skill's Maintenance protocol (episode file → pointer in its domain
-→ refresh that domain's status) instead of writing directly into MEMORY.md.
+Before saving project memory, check `.codex/memory/MEMORY.md` for a domain map. If one exists,
+follow the memory-playbook-cx skill's Maintenance protocol: episode file → pointer in its domain
+→ refresh that domain's status. Never write project status directly into `MEMORY.md`.
 ```
