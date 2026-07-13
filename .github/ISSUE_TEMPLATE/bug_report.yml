@@ -1,0 +1,35 @@
+name: Bug report
+description: Report incorrect or unsafe Memory Playbook CX behavior
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for helping improve Memory Playbook CX.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Describe the observed behavior and what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: Include the prompt, memory layout, and smallest reproducible sequence. Remove secrets and personal data.
+    validations:
+      required: true
+  - type: input
+    id: codex
+    attributes:
+      label: Codex surface and version
+      placeholder: Codex desktop, CLI, or IDE integration
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety check
+      options:
+        - label: I removed secrets and personal information from this report.
+          required: true
