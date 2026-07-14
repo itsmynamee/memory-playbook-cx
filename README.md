@@ -3,7 +3,7 @@
 [![Tests](https://github.com/itsmynamee/memory-playbook-cx/actions/workflows/test.yml/badge.svg)](https://github.com/itsmynamee/memory-playbook-cx/actions/workflows/test.yml)
 [![Release](https://img.shields.io/github/v/release/itsmynamee/memory-playbook-cx)](https://github.com/itsmynamee/memory-playbook-cx/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Agent: Codex](https://img.shields.io/badge/agent-Codex-111827.svg)](https://github.com/openai/codex)
+[![Agent: Codex](https://img.shields.io/badge/agent-Codex-111827.svg?logo=openai&logoColor=white)](https://github.com/openai/codex)
 
 **Transparent project memory for Codex that automatically captures meaningful project outcomes without logging everything.**
 
